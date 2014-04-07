@@ -1,8 +1,16 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: 1px solid red;
 }
-
-a {
-  color: #00B7FF;
+#playground{
+  	width:1040px;
+  	height:640px;
+  	border: 1px solid black;
+  	line-height: 0;
+ }
+img{
+	width: 20px;
+	height: 20px;
+	
 }
