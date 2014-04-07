@@ -5,7 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    
+    <script src="/javascripts/map.js"></script>
+    <script src="/javascripts/pacman.js"></script>
   </head>
   <body>
     <div id="playground">
@@ -13,48 +14,7 @@
   </body>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			function Map()
-			{
-				this.map=[];
-				this.wall=function(number)
-				{
-					for (var i = 0; i < number; i++) 
-					{
-						this.map.push(1);
-					};
-				}
-				this.mapDetail=function(start,length,type,line)
-				{
-					for (var i = 0+start+(line-1)*52; i < length+start+(line-1)*52; i++) 
-					{
-						this.map[i]=type;
-					};
-				};
-				this.drawMap=function()
-				{	
-					console.log(this.map);
-					for (var i = 0; i < this.map.length; i++) {
-						if (this.map[i]==1) 
-						{
-							console.log("here");
-							$("#playground").append("<img class='wall' id='wall_"+i+"' src='/images/bluesquare.jpg' />");
-						}else if (this.map[i]==2) 
-						{
-							$("#playground").append("<img class='sDot' id='sDot_"+i+"' src='/images/smallDot.png' />");
-						}else if (this.map[i]==3) 
-						{
-							$("#playground").append("<img class='bDot' id='bDot_"+i+"' src='/images/bigDot.jpeg' />");
-						}else if (this.map[i]==0) 
-						{
-							$("#playground").append("<img class='black' id='black_"+i+"' src='/images/blacksquare.jpg' />");
-						}else if (this.map[i]==4) 
-						{
-							$("#playground").append("<img class='wall' id='wall_"+i+"' src='/images/Blue-line.png' />");
-						};
-					};
-					
-				};
-			}
+			
 			var playground=new Map();
 			// create a big map--
 			playground.wall(1612);
@@ -324,6 +284,25 @@
 			playground.mapDetail(1,50,2,30);
 			// draw the map
 			playground.drawMap();
-		})
+			var pacman1=new Pacman();
+			pacman1.initialize();
+			var movement=37;
+			document.onkeydown=function(e)
+			{
+				console.log(e.keyCode);
+				if (e.keyCode==37||e.keyCode==38||e.keyCode==39||e.keyCode==40)
+				{
+					movement=e.keyCode;
+				};
+			};
+			console.log(movement);
+			var Gameloop=function()
+			{
+				pacman1.move(movement);
+			}
+			var intervalId=setInterval(Gameloop,200);
+						
+		});
+				
 	</script>
 </html>

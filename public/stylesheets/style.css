@@ -5,12 +5,11 @@ body {
 }
 #playground{
   	width:1040px;
-  	height:640px;
+  	height:620px;
   	border: 1px solid black;
   	line-height: 0;
  }
 img{
 	width: 20px;
 	height: 20px;
-	
 }
